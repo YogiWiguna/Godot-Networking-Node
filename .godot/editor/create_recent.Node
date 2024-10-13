@@ -1,0 +1,11 @@
+MeshInstance3D
+MultiplayerSynchronizer
+Camera3D
+CollisionShape3D
+CharacterBody3D
+MultiplayerSpawner
+LineEdit
+Button
+VBoxContainer
+Control
+DirectionalLight3D

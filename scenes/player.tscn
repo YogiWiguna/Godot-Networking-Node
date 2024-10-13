@@ -1,0 +1,38 @@
+[gd_scene load_steps=8 format=3 uid="uid://em7mvl4xqw3d"]
+
+[ext_resource type="Script" path="res://scenes/player.gd" id="1_g3ra7"]
+[ext_resource type="Script" path="res://scenes/multiplayer_synchronizer.gd" id="2_hemos"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fmcnw"]
+albedo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_utu18"]
+material = SubResource("StandardMaterial3D_fmcnw")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_7leb1"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qqj6j"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_nc64l"]
+
+[node name="player" type="CharacterBody3D"]
+script = ExtResource("1_g3ra7")
+
+[node name="body" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.985801, 0)
+mesh = SubResource("CapsuleMesh_utu18")
+
+[node name="face" type="MeshInstance3D" parent="body"]
+transform = Transform3D(1, 0, 0, 0, 0.287695, 0, 0, 0, 1, 0.141921, 0.32317, 0)
+mesh = SubResource("CapsuleMesh_7leb1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.988349, 0)
+shape = SubResource("CapsuleShape3D_qqj6j")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.513621, 1.91802, 3.93859)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_nc64l")
+script = ExtResource("2_hemos")

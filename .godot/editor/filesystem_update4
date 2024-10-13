@@ -1,0 +1,5 @@
+res://scenes/main.tscn
+res://scenes/main.gd
+res://scenes/player.tscn
+res://scenes/player.gd
+res://scenes/multiplayer_synchronizer.gd

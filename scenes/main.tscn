@@ -1,0 +1,62 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxwd22f41r0ir"]
+
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_qx5xq"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ydr87"]
+size = Vector3(32, 1, 32)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_k8j0v"]
+data = PackedVector3Array(-16, 0.5, 16, 16, 0.5, 16, -16, -0.5, 16, 16, 0.5, 16, 16, -0.5, 16, -16, -0.5, 16, 16, 0.5, -16, -16, 0.5, -16, 16, -0.5, -16, -16, 0.5, -16, -16, -0.5, -16, 16, -0.5, -16, 16, 0.5, 16, 16, 0.5, -16, 16, -0.5, 16, 16, 0.5, -16, 16, -0.5, -16, 16, -0.5, 16, -16, 0.5, -16, -16, 0.5, 16, -16, -0.5, -16, -16, 0.5, 16, -16, -0.5, 16, -16, -0.5, -16, 16, 0.5, 16, -16, 0.5, 16, 16, 0.5, -16, -16, 0.5, 16, -16, 0.5, -16, 16, 0.5, -16, -16, -0.5, 16, 16, -0.5, 16, -16, -0.5, -16, 16, -0.5, 16, 16, -0.5, -16, -16, -0.5, -16)
+
+[sub_resource type="BoxMesh" id="BoxMesh_v1tok"]
+size = Vector3(32, 1, 32)
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_qx5xq")
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.96265, 0)
+mesh = SubResource("BoxMesh_ydr87")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_k8j0v")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.695787, 0.718248, 0, -0.718248, 0.695787, 0, 9.18308, 9.20748)
+current = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Camera3D"]
+
+[node name="Menu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="port" type="LineEdit" parent="Menu/VBoxContainer"]
+layout_mode = 2
+text = "9999"
+placeholder_text = "Port"
+
+[node name="join_button" type="Button" parent="Menu/VBoxContainer"]
+layout_mode = 2
+text = "Join"
+
+[node name="host_button" type="Button" parent="Menu/VBoxContainer"]
+layout_mode = 2
+text = "Host"
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://scenes/player.tscn")
+spawn_path = NodePath("..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 22.6874, 0)
+mesh = SubResource("BoxMesh_v1tok")
